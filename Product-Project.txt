@@ -1,17 +1,14 @@
-"What I understood about Kubernetes fundamental Concept as a beginner, who has just had hands-on experiences:"
+"What I understood about Microservices as a beginner, who has just had hands-on experiences:"
 
-A Kubernetes cluster is a collection of nodes running on Kubernetes. To find out how many nodes are currently running and their detailed information (such as master nodes, worker nodes, internal IP, external IP, OS, container runtime, etc.), you can use the following command: "kubectl get nodes -o wide." These nodes can be either virtual machines or physical machines, and from a networking perspective, they represent the first layer of networking.
+Firstly Microservices is called business logic in other hand, is written by developer as code using different programming language.
+managemnet
 
-In real-world scenarios, there may be multiple Kubernetes clusters, each managed by separate teams. Some Kubernetes clusters may run on various cloud providers to ensure server availability even within the same company.
+Secondly , How to run and where to run these codes, On which platform like vmawre,aws,google cloud,azure ,on premise physical server, serverless or on kubernetes as container.
+So if we want to run as containerization , it need to buid , need to package the docker imagefile including business logice code. Everysingle miscroservices have image file.
 
-Each microservice has its own IP address, but Pods are managed by ReplicaSets, and ReplicaSets are controlled by Deployments using labels and selectors. It's important to note that the Pod's ID and IP address are ephemeral; they change after termination and recreation. To ensure communication with all Pods, we use Kubernetes services that utilize labels and selectors as endpoints for services.
+Thidly, those container image file storage in repository like github, docker hub, aws (ECR), google (container registry), azure (container register) etc.
+we have to write yaml file involved those image file to deploy on kubernetes. That's why we have kubernetes clusters.It doesn't matter our business logic code where to run, where to store, it can happen on any cloud provider,we must focus only technology pattern of infrastructure.
 
-Now, let's discuss namespaces, which are one of the Kubernetes API resources. A namespace is similar to a VLAN in networking; it acts as a boundary for separating microservice groups, such as different teams or projects. Creating separate namespaces allows easy management of network policies. If you want to delete all pods at once, you can simply delete the namespace that runs all the pods. Otherwise, by default, all resources run in the "default" namespace.
+Docker is one of the implementation container like containerd, rocket etc. They do same thing like package application,come out image file, run image on kubernetes.
 
-The various resources mentioned earlier, such as Pods, ReplicaSets, Deployments, namespaces, Services, NetworkPolicies, etc., are default Kubernetes API resources. It's essential to study and familiarize yourself with these API resources to work effectively with Kubernetes. Additionally, understanding the core concepts and knowing how to read the official documentation is crucial for successful deployments.
-
-If you decide to deploy other tools like Istio or MetalLB, you will encounter more Kubernetes API resources in the form of Custom Resources Definitions (CRD).
-
-
-
-#thanhtikesoe
+Kubernetes is an open-source container orchestra like openshift, docekr swarm.A lot of miscroservices need connectivity, securtiy ,observability . Thatis why we need servicemesh is called application networking. Kuberneters can not support fully those traffic management. So need to use istio , calcio linkerd,consul etc leading to servicemesh.
